@@ -20,7 +20,14 @@ class ProtocolsController < ApplicationController
 
   # POST: /protocols
   post "/protocols" do
-    redirect "/protocols"
+    protocol = Protocol.find_by(name: params[:name])
+    if protocol == nil && params[:name] != "" && params[:description] != ""
+      @protocol = Protocol.create(name: params[:name], description: params[:description])
+      redirect to ("/protocols/#{@protocol.id}")
+    else
+      protocol ? @params = {} : @params = params      
+      erb :"/protocols/new.html"
+    end
   end
 
   # GET: /protocols/5
