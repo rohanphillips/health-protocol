@@ -5,10 +5,60 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "your_health_matters"
   end
 
   get "/" do
     erb :welcome
+  end
+
+  get '/signup' do 
+    if !!Helpers::is_logged_in?(session) == false
+      erb :'/users/create_user'
+    else
+      erb :'/tweets/tweets'
+    end
+  end 
+
+  post '/signup' do
+    user = User.find_by username: params[:username]
+    if user == nil && params[:username] != "" && params[:email] != "" && params[:password] != ""
+      user = User.create(username: params[:username], email: params[:email], password: params[:password])    
+      session[:user_id] = user.id
+      redirect to ('/tweets')
+    else
+      redirect to ('/signup')
+    end
+    
+  end  
+
+  get '/login' do
+    if !!Helpers::is_logged_in?(session) == false
+      @username = ""
+      @login = true
+      erb :'/users/login'
+    else      
+      erb :'/tweets/tweets'
+    end
+  end
+
+  post '/login' do    
+    user = User.find_by username: params[:username]
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect to ('/tweets')
+    else
+      if user
+        @username = user.username
+      end
+      erb :'/users/login'
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/login'
   end
 
 end
