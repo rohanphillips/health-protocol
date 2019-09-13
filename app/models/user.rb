@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_secure_password
+  
   def slug
     self.username.split(" ").map{|string| string.downcase}.join("-") 
   end

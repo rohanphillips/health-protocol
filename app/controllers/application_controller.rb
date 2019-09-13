@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    @is_home = true
     erb :welcome
   end
 
@@ -45,18 +46,18 @@ class ApplicationController < Sinatra::Base
     user = User.find_by username: params[:username]
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to ('/tweets')
+      redirect to ('/')
     else
       if user
         @username = user.username
       end
-      erb :'/users/login'
+      erb :'/login/login'
     end
   end
 
   get '/logout' do
     session.clear
-    redirect '/login'
+    redirect '/'
   end
 
 end

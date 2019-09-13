@@ -17,13 +17,14 @@
     <div class="wrapper">
       <header>
         <% if !!Helpers.is_logged_in?(session) == false %>
-          <a href="/signup">Sign Up</a>  
+          <% unless !!@is_home %>
+            <a href="/">Home</a>
+          <% end %>
+          <a href="/signup">Sign Up</a>            
           <%if !!@login == false%>
             <a href="/login">Log In</a>  
           <%end%>
-        <%else%>
-          <a href="/tweets/new">New Tweet</a>
-          <a href="/tweets">Show All</a>
+        <%else%>          
           <a href="/logout">Log Out</a>
         <%end%>
       </header>
