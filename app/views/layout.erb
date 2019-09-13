@@ -15,11 +15,22 @@
   </head>
   <body>
     <div class="wrapper">
-
+      <header>
+        <% if !!Helpers.is_logged_in?(session) == false %>
+          <a href="/signup">Sign Up</a>  
+          <%if !!@login == false%>
+            <a href="/login">Log In</a>  
+          <%end%>
+        <%else%>
+          <a href="/tweets/new">New Tweet</a>
+          <a href="/tweets">Show All</a>
+          <a href="/logout">Log Out</a>
+        <%end%>
+      </header>
         <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2019 <strong>HealthProtocol</strong></small>
+        <small>&copy; 2019 <strong>Health Protocol</strong></small>
       </footer>
     </div>
 
