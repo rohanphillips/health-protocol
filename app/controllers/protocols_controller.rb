@@ -2,12 +2,20 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols
   get "/protocols" do
-    erb :"/protocols/index.html"
+    if Helpers.is_logged_in?(session)
+      erb :"/protocols/index.html"
+    else
+      redirect to('/')
+    end
   end
 
   # GET: /protocols/new
   get "/protocols/new" do
-    erb :"/protocols/new.html"
+    if Helpers.is_logged_in?(session)
+      erb :"/protocols/new.html"
+    else
+      redirect to('/')
+    end
   end
 
   # POST: /protocols
@@ -17,7 +25,11 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/5
   get "/protocols/:id" do
-    erb :"/protocols/show.html"
+    if Helpers.is_logged_in?(session)
+      erb :"/protocols/show.html"
+    else
+      redirect to ('/')
+    end
   end
 
   # GET: /protocols/5/edit
@@ -32,6 +44,10 @@ class ProtocolsController < ApplicationController
 
   # DELETE: /protocols/5/delete
   delete "/protocols/:id/delete" do
-    redirect "/protocols"
+    if Helpers.is_logged_in?(session)
+      redirect "/protocols"
+    else
+      redirect to ('/')
+    end
   end
 end
