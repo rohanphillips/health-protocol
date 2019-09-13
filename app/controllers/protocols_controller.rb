@@ -23,6 +23,8 @@ class ProtocolsController < ApplicationController
     protocol = Protocol.find_by(name: params[:name])
     if protocol == nil && params[:name] != "" && params[:description] != ""
       @protocol = Protocol.create(name: params[:name], description: params[:description])
+      @protocol.user_id = Helpers.current_user(session).id
+      @protocol.save
       redirect to ("/protocols/#{@protocol.id}")
     else
       protocol ? @params = {} : @params = params      
@@ -33,7 +35,20 @@ class ProtocolsController < ApplicationController
   # GET: /protocols/5
   get "/protocols/:id" do
     if Helpers.is_logged_in?(session)
+      @protocol = Protocol.find(params[:id])
       erb :"/protocols/show.html"
+    else
+      redirect to ('/')
+    end
+  end
+
+  # DELETE: /protocols/5/delete
+  delete "/protocols/:id/delete" do
+    if Helpers.is_logged_in?(session)
+      if Helpers.current_user(session).id == Protocol.find(params[:id].to_i).user_id
+        Protocol.delete(params[:id].to_i)  
+      end 
+      redirect "/protocols"
     else
       redirect to ('/')
     end
@@ -41,7 +56,18 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/5/edit
   get "/protocols/:id/edit" do
-    erb :"/protocols/edit.html"
+    if Helpers.is_logged_in?(session)
+      if Helpers.current_user(session).id == Protocol.find(params[:id].to_i).user_id
+        @protocol = Protocol.find(params[:id])
+        erb :"/protocols/edit.html"
+      else
+        redirect to ("/protocols/#{params[:id]}")
+      end
+
+    else
+      redirect to ("/protocols/#{params[:id]}")
+    end
+
   end
 
   # PATCH: /protocols/5
@@ -49,12 +75,5 @@ class ProtocolsController < ApplicationController
     redirect "/protocols/:id"
   end
 
-  # DELETE: /protocols/5/delete
-  delete "/protocols/:id/delete" do
-    if Helpers.is_logged_in?(session)
-      redirect "/protocols"
-    else
-      redirect to ('/')
-    end
-  end
+  
 end

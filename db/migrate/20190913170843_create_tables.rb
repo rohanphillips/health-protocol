@@ -9,6 +9,7 @@ class CreateTables < ActiveRecord::Migration
     end
 
     create_table :protocols do |t|
+      t.belongs_to :user
       t.string :name
       t.string :description
       t.timestamps null: false

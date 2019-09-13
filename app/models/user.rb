@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :protocol_records
+  has_many :protocls
   
   def slug
     self.username.split(" ").map{|string| string.downcase}.join("-") 

@@ -1,1 +1,21 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h3>Protocol Details</h3>
+<table>
+  <tr>
+    <td align="right">Name:</td>
+    <td><%=@protocol.name%></td>
+  </tr>
+  <tr>
+    <td align="right">Description:</td>
+    <td><%=@protocol.description%></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>      
+      <a href="/protocols/<%= @protocol.id %>/edit"><button>Edit</button></a>
+      <form action="/protocols/<%= @protocol.id %>/delete" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+</table>

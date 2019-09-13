@@ -1,1 +1,19 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Protocol</h1>
+
+<form action="/protocols" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <table>
+    <tr>
+      <td align="right"><label for="name">Name:</label></td>
+      <td><input type="text" id="name" name="name" value="<%=@protocol.name%>"></td>
+    </tr>
+    <tr>
+      <td align="right"><label for="description">Description:</label></td>
+      <td><input type="text" id="description" name="description" value="<%=@protocol.description%>"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" name="Edit"></td>
+    </tr>
+  </table>
+</form>

@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20190913170843) do
   end
 
   create_table "protocols", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
