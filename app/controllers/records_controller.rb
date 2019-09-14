@@ -17,8 +17,24 @@ class RecordsController < ApplicationController
 
   # POST: /records
   post "/records" do
-    binding.pry
-    redirect "/records"
+    if Helpers.is_logged_in?(session)
+      @protocol = Protocol.find_by(name: params[:name])
+      binding.pry
+      if !!@protocol
+        if Helpers.is_protocol_complete?(params)
+        else
+          @protocols = Protocol.all
+          @params = params
+          erb :"/records/new.html"
+        end;
+      else
+        @protocols = Protocol.all
+        @params = params
+        erb :"/records/new.html"
+      end
+    else
+      redirect "/"
+    end
   end
 
   # GET: /records/5

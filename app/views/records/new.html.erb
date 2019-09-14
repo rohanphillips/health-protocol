@@ -5,40 +5,43 @@
     <tr>
       <td align="right"><label for="name">Name:</label></td>
       <td>
-        <select value="name">
+        <input name="name" list="protocols">
+        <datalist id="protocols">
           <%@protocols.each do |p|%>
-            <option value="<%=p.id%>"><%=p.name%></option>
+            <option id="<%=p.id%>" value="<%=p.name%>"><%=p.description%></option>
           <%end%>
-        </select>
+        </datalist>
       </td>
     </tr>    
     <tr>
-      <td align="right"><label for="heart_rate">Resting Heart Rate:</label></td>
-      <td><input type="text" id="heart_rate" name="heart_rate"></td>
+      <td align="right"><label for="resting_heartrate">Resting Heart Rate:</label></td>
+      <td><input type="number" min="0" id="resting_heartrate" name="[data][resting_heartrate]"></td>
     </tr>
     <tr>
       <td align="right"><label for="bp_over">Blood Pressure Over:</label></td>
-      <td><input type="text" id="bp_over" name="bp_over"></td>
+      <td><input type="number" min="0" id="bp_over" name="[data][bp_over]"></td>
     </tr>
     <tr>
       <td align="right"><label for="bp_under">Blood Pressure Under:</label></td>
-      <td><input type="text" id="bp_under" name="bp_under"></td>
+      <td><input type="number" min="0" id="bp_under" name="[data][bp_under]"></td>
     </tr>
     <tr>
       <td align="right"><label for="mood_score">Mood Score:</label></td>
-      <td><input type="text" id="mood_score" name="mood_score"></td>
+      <td><input type="number" min="0" max="100" id="mood_score" name="[data][mood_score]"></td>
     </tr>
     <tr>
       <td align="right"><label for="exercise_minutes">Exercise Minutes:</label></td>
-      <td><input type="text" id="exercise_minutes" name="exercise_minutes"></td>
+      <td><input type="number" min="0" id="exercise_minutes" name="[data][exercise_minutes]"></td>
     </tr>
     <tr>
-      <td align="right"><label for="water_unit">Water Unit:</label></td>
-      <td><input type="text" id="water_unit" name="water_unit"></td>
-    </tr>
-    <tr>
-      <td align="right"><label for="water_consumed">Water Consumed:</label></td>
-      <td><input type="text" id="water_consumed" name="water_consumed"></td>
+      <td align="right"><label for="water_consumed" >Water Consumed:</label></td>
+      <td><input type="number" min="0" id="water_consumed" name="[data][water_consumed]"></td>
+      <td><input type="text" id="water_unit" name="[data][water_unit]" list="water_units" value="oz"></td>
+      <datalist id="water_units">
+         <option value="oz">Ounces</option>
+         <option value="cup">Cups</option>
+         <option value="gallon">Gallons</option>
+      </datalist>
     </tr>
     <tr>
       <td></td>
