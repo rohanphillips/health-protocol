@@ -22,9 +22,7 @@ class ProtocolsController < ApplicationController
   post "/protocols" do
     protocol = Protocol.find_by(name: params[:name])
     if protocol == nil && params[:name] != "" && params[:description] != ""
-      @protocol = Protocol.create(name: params[:name], description: params[:description])
-      @protocol.user_id = Helpers.current_user(session).id
-      @protocol.save
+      @protocol = Protocol.create(name: params[:name], description: params[:description], user_id: Helpers.current_user(session).id)
       redirect to ("/protocols/#{@protocol.id}")
     else
       protocol ? @params = {} : @params = params      
@@ -72,7 +70,11 @@ class ProtocolsController < ApplicationController
 
   # PATCH: /protocols/5
   patch "/protocols/:id" do
-    redirect "/protocols/:id"
+    if Helpers.is_logged_in?(session)
+      redirect "/protocols/:id"
+    else
+      redirect to ('/')
+    end
   end
 
   
