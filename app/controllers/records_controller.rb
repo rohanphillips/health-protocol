@@ -7,7 +7,12 @@ class RecordsController < ApplicationController
 
   # GET: /records/new
   get "/records/new" do
-    erb :"/records/new.html"
+    if Helpers.is_logged_in?(session)
+      @protocols = Protocol.all
+      erb :"/records/new.html"
+    else
+      redirect to('/')
+    end  
   end
 
   # POST: /records
