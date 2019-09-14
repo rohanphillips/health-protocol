@@ -17,6 +17,7 @@ class RecordsController < ApplicationController
 
   # POST: /records
   post "/records" do
+    binding.pry
     redirect "/records"
   end
 

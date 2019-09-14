@@ -1,15 +1,17 @@
 <h1>Record Protocol</h1>
 
-<form action="/protocols" method="post">
+<form action="/records" method="post">
   <table>
     <tr>
       <td align="right"><label for="name">Name:</label></td>
-      <td><input type="text" id="name" name="name"></td>
-    </tr>
-    <tr>
-      <td align="right"><label for="description">Description:</label></td>
-      <td><input type="text" id="description" name="description"></td>
-    </tr>
+      <td>
+        <select value="name">
+          <%@protocols.each do |p|%>
+            <option value="<%=p.id%>"><%=p.name%></option>
+          <%end%>
+        </select>
+      </td>
+    </tr>    
     <tr>
       <td align="right"><label for="heart_rate">Resting Heart Rate:</label></td>
       <td><input type="text" id="heart_rate" name="heart_rate"></td>
