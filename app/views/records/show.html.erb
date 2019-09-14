@@ -1,1 +1,35 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1>Your new record looks like this</h1>
+<table>
+  <tr>
+    <td>Protocol:</td>
+    <td><%= @pr.protocol.name %></td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td><%= @pr.protocol.description %></td>
+  </tr>
+  <tr>
+    <td>Resting Heart Rate:</td>
+    <td><div style="display: inline-block;"><%= @pr.record.resting_heartrate %></div>  <div style="display: inline-block;">bpm</div></td>
+  </tr>
+  <tr>
+    <td>Blood Pressure:</td>
+    <td><div style="display: inline-block;"><%= @pr.record.bp_over %></div>/<div style="display: inline-block;"><%= @pr.record.bp_under %></div></td>
+  </tr>
+  <tr>
+    <td>Mood Score:</td>
+    <td><div style="display: inline-block;"><%= @pr.record.mood_score %></div> / 100</td>
+  </tr>
+  <tr>
+    <td>Exercise:</td>
+    <td><div style="display: inline-block;"><%= @pr.record.exercise_minutes %></div> minutes</td>
+  </tr>
+  <tr>
+    <td>Water Consumed:</td>
+    <td><div style="display: inline-block;"><%= @pr.record.water_consumed %></div>  <div style="display: inline-block;"><%= @pr.record.water_unit %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href="/records/<%=@pr.record.id%>/edit"><button>Edit</button></a></td>
+  </tr>
+</table>

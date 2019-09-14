@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
       if !!@protocol
         if Helpers.is_protocol_complete?(params)
           @protocolrecord = ProtocolRecord.create(user_id: Helpers.current_user(session).id, protocol_id: @protocol.id, record_id: Record.create(params[:data]).id)          
-          binding.pry
+          redirect to ("/records/#{@protocolrecord.record.id}")
         else
           @protocols = Protocol.all
           @params = params
@@ -40,7 +40,16 @@ class RecordsController < ApplicationController
 
   # GET: /records/5
   get "/records/:id" do
-    erb :"/records/show.html"
+    if Helpers.is_logged_in?(session)
+      @pr = ProtocolRecord.find_by(record_id: params[:id])
+      if @pr.user.id == Helpers.current_user(session).id then
+        erb :"/records/show.html"
+      else
+        redirect to ("/records")
+      end
+    else
+      redirect "/"
+    end
   end
 
   # GET: /records/5/edit
