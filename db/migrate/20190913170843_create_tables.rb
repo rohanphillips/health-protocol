@@ -17,8 +17,8 @@ class CreateTables < ActiveRecord::Migration
 
     create_table :protocol_records do |t|
       t.belongs_to :user
-      t.belongs_to :protocols
-      t.belongs_to :records
+      t.belongs_to :protocol
+      t.belongs_to :record
       t.timestamps null: false
     end
 

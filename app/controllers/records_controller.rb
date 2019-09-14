@@ -19,9 +19,10 @@ class RecordsController < ApplicationController
   post "/records" do
     if Helpers.is_logged_in?(session)
       @protocol = Protocol.find_by(name: params[:name])
-      binding.pry
       if !!@protocol
         if Helpers.is_protocol_complete?(params)
+          @protocolrecord = ProtocolRecord.create(user_id: Helpers.current_user(session).id, protocol_id: @protocol.id, record_id: Record.create(params[:data]).id)          
+          binding.pry
         else
           @protocols = Protocol.all
           @params = params

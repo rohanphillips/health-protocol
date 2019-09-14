@@ -22,7 +22,8 @@ class ProtocolsController < ApplicationController
   post "/protocols" do
     protocol = Protocol.find_by(name: params[:name])
     if protocol == nil && params[:name] != "" && params[:description] != ""
-      @protocol = Protocol.create(name: params[:name], description: params[:description], user_id: Helpers.current_user(session).id)
+      params[:user_id] = Helpers.current_user(session).id
+      @protocol = Protocol.create(params)
       redirect to ("/protocols/#{@protocol.id}")
     else
       protocol ? @params = {} : @params = params      

@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20190913170843) do
 
   create_table "protocol_records", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "protocols_id"
-    t.integer  "records_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "protocol_id"
+    t.integer  "record_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "protocols", force: :cascade do |t|
