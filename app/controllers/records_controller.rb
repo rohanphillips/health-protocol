@@ -14,6 +14,7 @@ class RecordsController < ApplicationController
   get "/records/new" do
     if is_logged_in?
       @protocols = Protocol.all
+      @params = {}
       erb :"/records/new.html"
     else
       redirect to('/')
@@ -101,4 +102,17 @@ class RecordsController < ApplicationController
       redirect to ("/")
     end
   end
+
+  helpers do
+    def record_data(hash, data_hash_name, data_name)
+      data = ""
+      if hash.has_key? "#{data_hash_name}"
+        if hash["#{data_hash_name}"].has_key? "#{data_name}"
+          data = hash["#{data_hash_name}"]["#{data_name}"]
+        end
+      end
+      data
+    end
+  end
+
 end
