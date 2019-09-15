@@ -39,6 +39,8 @@ class ApplicationController < Sinatra::Base
       @username = ""
       @login = true
       erb :'/login/login'
+    else
+      redirect to ("/")
     end
   end
 
