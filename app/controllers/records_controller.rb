@@ -25,7 +25,7 @@ class RecordsController < ApplicationController
     if is_logged_in?
       @protocol = Protocol.find_by(name: params[:protocol_data][:name])
       if !!@protocol
-        if missing_inputs?(params)
+        if valid_inputs?(params)
           @protocolrecord = ProtocolRecord.create(user_id: current_user.id, protocol_id: @protocol.id, record_id: Record.create(params[:record_data]).id)          
           redirect to ("/records/#{@protocolrecord.record.id}")
         else
