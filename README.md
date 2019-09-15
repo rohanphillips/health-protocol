@@ -56,3 +56,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Inspiration
 * etc
 
+## To Do
+* Tests
+* CSS formatting
+* Error Messages
+
