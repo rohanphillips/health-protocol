@@ -2,7 +2,12 @@ class RecordsController < ApplicationController
 
   # GET: /records
   get "/records" do
-    erb :"/records/index.html"
+    if Helpers.is_logged_in?(session)
+      @userrecords = ProtocolRecord.where(user_id: Helpers.current_user(session).id)
+      erb :"/records/index.html"
+    else
+      redirect to('/')
+    end
   end
 
   # GET: /records/new

@@ -30,6 +30,13 @@
   </tr>
   <tr>
     <td></td>
-    <td><a href="/records/<%=@pr.record.id%>/edit"><button>Edit</button></a></td>
+    <td><a href="/records/<%=@pr.record.id%>/edit"><button>Edit</button></a>
+      <div style="display: inline-block;">
+        <form action="/records/<%= @pr.record.id %>/delete" method="post">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+    </td>
   </tr>
 </table>

@@ -1,1 +1,47 @@
-<h1>This is the Model's index page.</h1>
+<h1>Here are all your recorded entries</h1>
+<%@userrecords.each do |r|%>
+  <table>    
+    <tr>      
+      <td align="right">Protocol:</td>
+      <td><%= r.protocol.name %></td>
+    </tr>
+    <tr>
+      <td align="right">Description:</td>
+      <td><%= r.protocol.description %></td>
+    </tr>
+    <tr>
+      <td align="right">Resting Heart Rate:</td>
+      <td><div style="display: inline-block;"><%= r.record.resting_heartrate %></div>  <div style="display: inline-block;">bpm</div></td>
+    </tr>
+    <tr>
+      <td align="right">Blood Pressure:</td>
+      <td><div style="display: inline-block;"><%= r.record.bp_over %></div>/<div style="display: inline-block;"><%= r.record.bp_under %></div></td>
+    </tr>
+    <tr>
+      <td align="right">Mood Score:</td>
+      <td><div style="display: inline-block;"><%= r.record.mood_score %></div> / 100</td>
+    </tr>
+    <tr>
+      <td align="right">Exercise:</td>
+      <td><div style="display: inline-block;"><%= r.record.exercise_minutes %></div> minutes</td>
+    </tr>
+    <tr>
+      <td align="right">Water Consumed:</td>
+      <td><div style="display: inline-block;"><%= r.record.water_consumed %></div>  <div style="display: inline-block;"><%= r.record.water_unit %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <div style="display: inline-block;">Date Created: </div>
+        <div style="display: inline-block;"><%= r.created_at.strftime("%m/%d/%Y %T")%></div>
+        <div style="display: inline-block;">Last Modified: </div>
+        <div style="display: inline-block;"><%= r.updated_at%></div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><div style="display: inline-block;"><a href="/records/<%=r.record.id%>/edit"><button>View</button></a></div>
+      </td>
+    </tr>
+  </table>
+<%end%>
