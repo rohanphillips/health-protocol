@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do 
-    if !!Helpers::is_logged_in?(session) == false
+    if !!is_logged_in? == false
       erb :'/login/create_user'
     else
       erb :'/'
@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
   end  
 
   get '/login' do
-    if !!Helpers::is_logged_in?(session) == false
+    if !!is_logged_in? == false
       @username = ""
       @login = true
       erb :'/login/login'
@@ -58,6 +58,21 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     session.clear
     redirect '/'
+  end
+
+  helpers do
+    def current_user
+      User.find(session[:user_id])
+    end
+
+    def is_logged_in?
+      !!session[:user_id]
+    end
+
+    def is_protocol_complete?(params)
+      binding.pry
+    end
+
   end
 
 end

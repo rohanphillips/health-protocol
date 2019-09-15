@@ -2,7 +2,7 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols
   get "/protocols" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       erb :"/protocols/index.html"
     else
       redirect to('/')
@@ -11,7 +11,7 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/new
   get "/protocols/new" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       erb :"/protocols/new.html"
     else
       redirect to('/')
@@ -22,7 +22,7 @@ class ProtocolsController < ApplicationController
   post "/protocols" do
     protocol = Protocol.find_by(name: params[:name])
     if protocol == nil && params[:name] != "" && params[:description] != ""
-      params[:user_id] = Helpers.current_user(session).id
+      params[:user_id] = current_user.id
       @protocol = Protocol.create(params)
       redirect to ("/protocols/#{@protocol.id}")
     else
@@ -33,7 +33,7 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/5
   get "/protocols/:id" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       @protocol = Protocol.find(params[:id])
       erb :"/protocols/show.html"
     else
@@ -43,8 +43,8 @@ class ProtocolsController < ApplicationController
 
   # DELETE: /protocols/5/delete
   delete "/protocols/:id/delete" do
-    if Helpers.is_logged_in?(session)
-      if Helpers.current_user(session).id == Protocol.find(params[:id].to_i).user_id
+    if is_logged_in?
+      if current_user.id == Protocol.find(params[:id].to_i).user_id
         Protocol.delete(params[:id].to_i)  
       end 
       redirect "/protocols"
@@ -55,8 +55,8 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/5/edit
   get "/protocols/:id/edit" do
-    if Helpers.is_logged_in?(session)
-      if Helpers.current_user(session).id == Protocol.find(params[:id].to_i).user_id
+    if is_logged_in?
+      if current_user.id == Protocol.find(params[:id].to_i).user_id
         @protocol = Protocol.find(params[:id])
         erb :"/protocols/edit.html"
       else
@@ -71,7 +71,7 @@ class ProtocolsController < ApplicationController
 
   # PATCH: /protocols/5
   patch "/protocols/:id" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
         redirect "/protocols/#{params[:id]}"
     else
       redirect to ('/')
