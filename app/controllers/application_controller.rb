@@ -69,18 +69,18 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def missing_inputs?(params)      
-      is_complete = true
+    def valid_inputs?(params)      
+      is_valid = true
       params.each do |hash|
         new_hash = hash[1]
         new_hash.each do |data_hash|
           if data_hash[1] == ""
-            is_complete = false              
+            is_valid = false              
             break
           end
         end
       end
-      is_complete
+      is_valid
     end
 
   end
