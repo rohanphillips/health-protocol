@@ -59,7 +59,12 @@ class RecordsController < ApplicationController
 
   # GET: /records/5/edit
   get "/records/:id/edit" do
-    erb :"/records/edit.html"
+    if Helpers.is_logged_in?(session)
+      @pr = ProtocolRecord.find_by(record_id: params[:id])
+      erb :"/records/edit.html"
+    else
+      redirect "/"
+    end
   end
 
   # PATCH: /records/5
