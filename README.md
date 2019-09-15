@@ -4,6 +4,9 @@ Health Protocol Recorder
 
 ### Project Description
 
+Sign up/Log in and record health protocols.  Many protocols can be named, however there is only one set of vitals that can be recorded against that protocol
+Create as many records as required.  Users control their records.  Other users cannot view/edit/delete another users records
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
