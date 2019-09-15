@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @is_home = true
-    erb :welcome
+    erb :index
   end
 
   get '/signup' do 

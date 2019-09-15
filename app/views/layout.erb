@@ -16,10 +16,10 @@
   <body>
     <div class="wrapper">
       <header>
+        <% unless !!@is_home %>
+          <a href="/">Home</a>
+        <% end %>
         <% if !!Helpers.is_logged_in?(session) == false %>
-          <% unless !!@is_home %>
-            <a href="/">Home</a>
-          <% end %>
           <a href="/signup">Sign Up</a>            
           <%if !!@login == false%>
             <a href="/login">Log In</a>  
