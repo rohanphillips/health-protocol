@@ -1,14 +1,15 @@
 <h1>Here's a list of current Protocols</h1>
 <a href="/protocols/new"><button>New Protocol</button></a>
-<table>
   <%Protocol.all.each do |p|%>
-    <tr>
-      <td align="right">Name:</td>
-      <td><%=p.name%></td>
-    </tr>
-    <tr>
-      <td align="right">Description:</td>
-      <td><%=p.description%>  <a href="/protocols/<%=p.id%>"><button>View</button></a></td>
-    </tr>
+    <table style="border-bottom: 1px solid gray">
+      <tr >
+        <td align="right">Name:</td>
+        <td><%=p.name%></td>
+      </tr>
+      <tr>
+        <td align="right">Description:</td>
+        <td><%=p.description%>  <a href="/protocols/<%=p.id%>"><button>View</button></a></td>
+      </tr>
+    </table>
   <%end%>
-</table>
+

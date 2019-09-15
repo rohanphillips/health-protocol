@@ -6,7 +6,7 @@
 <%end%>
 <a href="/records/new"><button>New Record</button></a>
 <%@userrecords.each do |r|%>
-  <table>    
+  <table style="border-bottom: 1px solid gray">    
     <tr>      
       <td align="right">Protocol:</td>
       <td><%= r.protocol.name %></td>
