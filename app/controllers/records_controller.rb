@@ -76,6 +76,7 @@ class RecordsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @pr = ProtocolRecord.find_by(record_id: params[:id])
       if Helpers.current_user(session).id == @pr.user.id
+        @pr.record.update(params[:data])
         redirect "/records/#{params[:id]}"
       else
         redirect to ("/records")
@@ -87,6 +88,17 @@ class RecordsController < ApplicationController
 
   # DELETE: /records/5/delete
   delete "/records/:id/delete" do
-    redirect "/records"
+    if Helpers.is_logged_in?(session)
+      @pr = ProtocolRecord.find_by(record_id: params[:id])
+      if Helpers.current_user(session).id == @pr.user.id
+        @pr.record.delete
+        @pr.delete
+        redirect "/records"
+      else
+        redirect to ("/records")
+      end
+    else
+      redirect to ("/")
+    end
   end
 end
