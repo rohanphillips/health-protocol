@@ -72,7 +72,9 @@ class ProtocolsController < ApplicationController
   # PATCH: /protocols/5
   patch "/protocols/:id" do
     if is_logged_in?
-        redirect "/protocols/#{params[:id]}"
+      @protocol = Protocol.find(params[:id])
+      @protocol.update(params[:protocol_data])
+      redirect "/protocols/#{params[:id]}"
     else
       redirect to ('/')
     end

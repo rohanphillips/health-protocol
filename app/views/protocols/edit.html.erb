@@ -1,15 +1,15 @@
 <h1>Edit Protocol</h1>
 
-<form action="/protocols" method="post">
+<form action="/protocols/<%=@protocol.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <table>
     <tr>
       <td align="right"><label for="name">Name:</label></td>
-      <td><input type="text" id="name" name="name" value="<%=@protocol.name%>"></td>
+      <td><input type="text" id="name" name="[protocol_data][name]" value="<%=@protocol.name%>"></td>
     </tr>
     <tr>
       <td align="right"><label for="description">Description:</label></td>
-      <td><input type="text" id="description" name="description" value="<%=@protocol.description%>"></td>
+      <td><input type="text" id="description" name="[protocol_data][description]" value="<%=@protocol.description%>"></td>
     </tr>
     <tr>
       <td></td>
