@@ -27,7 +27,8 @@
           <%end%>
         <%else%>          
           <a href="/protocols">Protocols</a>
-          <a href="/records">Records</a>
+          <a href="/records">Records</a>          
+            You are logged in as <%=User.find(session[:user_id]).username%>
           <a href="/logout">Log Out</a>
         <%end%>
       </header>
