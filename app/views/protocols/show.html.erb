@@ -12,10 +12,12 @@
     <td></td>
     <td>      
       <a href="/protocols/<%= @protocol.id %>/edit"><button>Edit</button></a>
-      <form action="/protocols/<%= @protocol.id %>/delete" method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete">
-      </form>
+      <div style="display: inline-block;">
+        <form action="/protocols/<%= @protocol.id %>/delete" method="post">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
     </td>
   </tr>
 </table>

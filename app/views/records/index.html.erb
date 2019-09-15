@@ -1,4 +1,10 @@
-<h1>Here are all your recorded entries</h1>
+<%if @userrecords.size > 0%>
+  
+  <h1>Here are all your recorded entries</h1>
+<%else%>
+  <h1>You have no records</h1>  
+<%end%>
+<a href="/records/new"><button>New Record</button></a>
 <%@userrecords.each do |r|%>
   <table>    
     <tr>      
