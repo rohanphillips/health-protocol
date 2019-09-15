@@ -69,7 +69,7 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def is_protocol_complete?(params)      
+    def missing_inputs?(params)      
       is_complete = true
       params.each do |hash|
         new_hash = hash[1]
