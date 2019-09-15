@@ -72,7 +72,7 @@ class ProtocolsController < ApplicationController
   # PATCH: /protocols/5
   patch "/protocols/:id" do
     if Helpers.is_logged_in?(session)
-      redirect "/protocols/:id"
+        redirect "/protocols/#{params[:id]}"
     else
       redirect to ('/')
     end

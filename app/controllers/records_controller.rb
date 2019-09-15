@@ -61,7 +61,11 @@ class RecordsController < ApplicationController
   get "/records/:id/edit" do
     if Helpers.is_logged_in?(session)
       @pr = ProtocolRecord.find_by(record_id: params[:id])
-      erb :"/records/edit.html"
+      if Helpers.current_user(session).id == @pr.user.id
+        erb :"/records/edit.html"
+      else
+        redirect "/records"
+      end
     else
       redirect "/"
     end
@@ -69,7 +73,16 @@ class RecordsController < ApplicationController
 
   # PATCH: /records/5
   patch "/records/:id" do
-    redirect "/records/:id"
+    if Helpers.is_logged_in?(session)
+      @pr = ProtocolRecord.find_by(record_id: params[:id])
+      if Helpers.current_user(session).id == @pr.user.id
+        redirect "/records/#{params[:id]}"
+      else
+        redirect to ("/records")
+      end
+    else
+      redirect "/"
+    end
   end
 
   # DELETE: /records/5/delete
