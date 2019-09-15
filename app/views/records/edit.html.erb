@@ -5,7 +5,7 @@
     <tr>
       <td align="right"><label for="name">Name:</label></td>
       <td>
-        <input name="name" list="protocols" value="<%=@pr.protocol.name%>">
+        <input name="[protocol_data][name]" list="protocols" value="<%=@pr.protocol.name%>">
         <datalist id="protocols">
           <%Protocol.all.each do |p|%>
             <option id="<%=p.id%>" value="<%=p.name%>"><%=p.description%></option>
@@ -15,29 +15,29 @@
     </tr>    
     <tr>
       <td align="right"><label for="resting_heartrate">Resting Heart Rate:</label></td>
-      <td><input type="number" min="0" id="resting_heartrate" name="[data][resting_heartrate]" value="<%=@pr.record.resting_heartrate%>"></td>
+      <td><input type="number" min="0" id="resting_heartrate" name="[record_data][resting_heartrate]" value="<%=@pr.record.resting_heartrate%>"></td>
       <td>bpm</td>
     </tr>
     <tr>
       <td align="right"><label for="bp_over">Blood Pressure Over:</label></td>
-      <td><input type="number" min="0" id="bp_over" name="[data][bp_over]" value="<%=@pr.record.bp_over%>"></td>
+      <td><input type="number" min="0" id="bp_over" name="[record_data][bp_over]" value="<%=@pr.record.bp_over%>"></td>
     </tr>
     <tr>
       <td align="right"><label for="bp_under">Blood Pressure Under:</label></td>
-      <td><input type="number" min="0" id="bp_under" name="[data][bp_under]" value="<%=@pr.record.bp_under%>"></td>
+      <td><input type="number" min="0" id="bp_under" name="[record_data][bp_under]" value="<%=@pr.record.bp_under%>"></td>
     </tr>
     <tr>
       <td align="right"><label for="mood_score">Mood Score:</label></td>
-      <td><input type="number" min="0" max="100" id="mood_score" name="[data][mood_score]" value="<%=@pr.record.mood_score%>"></td>
+      <td><input type="number" min="0" max="100" id="mood_score" name="[record_data][mood_score]" value="<%=@pr.record.mood_score%>"></td>
     </tr>
     <tr>
       <td align="right"><label for="exercise_minutes">Exercise Minutes:</label></td>
-      <td><input type="number" min="0" id="exercise_minutes" name="[data][exercise_minutes]" value="<%=@pr.record.exercise_minutes%>"></td>
+      <td><input type="number" min="0" id="exercise_minutes" name="[record_data][exercise_minutes]" value="<%=@pr.record.exercise_minutes%>"></td>
     </tr>
     <tr>
       <td align="right"><label for="water_consumed" >Water Consumed:</label></td>
-      <td><input type="number" min="0" id="water_consumed" name="[data][water_consumed]" value="<%=@pr.record.water_consumed%>"></td>
-      <td><input type="text" id="water_unit" name="[data][water_unit]" list="water_units" value="oz" value="<%=@pr.record.water_unit%>"></td>
+      <td><input type="number" min="0" id="water_consumed" name="[record_data][water_consumed]" value="<%=@pr.record.water_consumed%>"></td>
+      <td><input type="text" id="water_unit" name="[record_data][water_unit]" list="water_units" value="oz" value="<%=@pr.record.water_unit%>"></td>
       <datalist id="water_units">
          <option value="oz">Ounces</option>
          <option value="cup">Cups</option>

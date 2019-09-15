@@ -69,8 +69,18 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def is_protocol_complete?(params)
-      binding.pry
+    def is_protocol_complete?(params)      
+      is_complete = true
+      params.each do |hash|
+        new_hash = hash[1]
+        new_hash.each do |data_hash|
+          if data_hash[1] == ""
+            is_complete = false              
+            break
+          end
+        end
+      end
+      is_complete
     end
 
   end

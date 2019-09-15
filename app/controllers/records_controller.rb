@@ -23,10 +23,10 @@ class RecordsController < ApplicationController
   # POST: /records
   post "/records" do
     if is_logged_in?
-      @protocol = Protocol.find_by(name: params[:name])
+      @protocol = Protocol.find_by(name: params[:protocol_data][:name])
       if !!@protocol
         if is_protocol_complete?(params)
-          @protocolrecord = ProtocolRecord.create(user_id: current_user.id, protocol_id: @protocol.id, record_id: Record.create(params[:data]).id)          
+          @protocolrecord = ProtocolRecord.create(user_id: current_user.id, protocol_id: @protocol.id, record_id: Record.create(params[:record_data]).id)          
           redirect to ("/records/#{@protocolrecord.record.id}")
         else
           @protocols = Protocol.all
@@ -76,7 +76,7 @@ class RecordsController < ApplicationController
     if is_logged_in?
       @pr = ProtocolRecord.find_by(record_id: params[:id])
       if current_user.id == @pr.user.id
-        @pr.record.update(params[:data])
+        @pr.record.update(params[:record_data])
         redirect "/records/#{params[:id]}"
       else
         redirect to ("/records")

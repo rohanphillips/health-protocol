@@ -19,7 +19,7 @@
         <% unless !!@is_home %>
           <a href="/">Home</a>
         <% end %>
-        <% if !!Helpers.is_logged_in?(session) == false %>
+        <% if is_logged_in? == false %>
           <a href="/signup">Sign Up</a>            
           <%if !!@login == false%>
             <a href="/login">Log In</a>  
