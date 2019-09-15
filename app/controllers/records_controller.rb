@@ -94,6 +94,7 @@ class RecordsController < ApplicationController
       if current_user.id == @pr.user.id
         @pr.record.delete
         @pr.delete
+        binding.pry
         redirect "/records"
       else
         redirect to ("/records")
