@@ -17,7 +17,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <% unless !!@is_home %>
+        <% unless @env["sinatra.route"] == "GET /" %>
           <a href="/">Home</a>
         <% end %>
         <% if is_logged_in? == false %>
@@ -28,7 +28,9 @@
         <%else%>          
           <a href="/protocols">Protocols</a>
           <a href="/records">Records</a>          
-            
+          <%if session.has_key? 'user_id'%>
+            You are logged in as <%=User.find(session[:user_id]).username%>
+          <%end%>  
           <a href="/logout">Log Out</a>
         <%end%>
       </header>

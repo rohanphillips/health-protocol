@@ -10,7 +10,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @is_home = true
     erb :index
   end
 
@@ -36,8 +35,6 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if !!is_logged_in? == false
-      @username = ""
-      @login = true
       erb :'/login/login'
     else
       redirect to ("/")
@@ -69,6 +66,10 @@ class ApplicationController < Sinatra::Base
 
     def is_logged_in?
       !!session[:user_id]
+    end
+
+    def is_home_page?
+      @env["sinatra.route"] == "GET /"
     end
 
     def valid_inputs?(params)      
