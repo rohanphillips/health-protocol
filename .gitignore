@@ -4,3 +4,4 @@
 *.sql
 *.sqlite
 schema.rb
+.vscode/settings.json
