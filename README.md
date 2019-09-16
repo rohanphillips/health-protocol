@@ -19,6 +19,10 @@ run
 ```
 bundle install
 ```
+prepare the database
+```
+rake db:migrate
+```
 
 To view project in action
 
