@@ -11,6 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20190913170843) do
+
+  create_table "protocol_records", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "protocol_id"
+    t.integer  "record_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "protocols", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer  "resting_heartrate"
+    t.integer  "bp_over"
+    t.integer  "bp_under"
+    t.integer  "mood_score"
+    t.integer  "exercise_minutes"
+    t.string   "water_unit"
+    t.integer  "water_consumed"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end
