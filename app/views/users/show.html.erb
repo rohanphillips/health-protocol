@@ -1,1 +1,23 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1>User Profile Page</h1>
+<table>
+  <tr>
+    <td align="right">Userame:</td>
+    <td><%=@user.username%></td>
+  </tr>
+  <tr>
+    <td align="right">Email:</td>
+    <td><%=@user.email%></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>      
+      <a href="/users/<%= @user.id %>/edit"><button>Edit</button></a>
+      <div style="display: inline-block;">
+        <form action="/users/<%= @user.id %>/delete" method="post">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+    </td>
+  </tr>  
+</table>

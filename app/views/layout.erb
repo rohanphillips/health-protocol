@@ -27,8 +27,9 @@
           <a href="/protocols">Protocols</a>
           <a href="/records">Records</a>          
           <%if session.has_key? 'user_id'%>
-            You are logged in as <%=User.find(session[:user_id]).username%>
-          <%end%>  
+            You are logged in as <%=User.find(session[:user_id]).username%>            
+          <a href="/users/<%=session[:user_id]%>">Profile</a>
+          <%end%>
           <a href="/logout">Log Out</a>
         <%end%>
       </header>
