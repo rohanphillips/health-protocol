@@ -51,8 +51,13 @@ class UsersController < ApplicationController
   end
 
   # # DELETE: /users/5/delete
-  # delete "/users/:id/delete" do
-  #   redirect "/users"
-  # end
+  delete "/users/:id/delete" do
+    user = User.find(params[:id])
+    user.records.delete_all
+    User.delete(user.id)
+    session.clear
+    binding.pry
+    redirect "/"
+  end
   
 end

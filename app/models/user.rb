@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :protocol_records
+  has_many :records, through: :protocol_records, dependent: :delete_all
   
   
   def slug

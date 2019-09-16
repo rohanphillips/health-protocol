@@ -1,3 +1,3 @@
 class Protocol < ActiveRecord::Base
-  has_many :protocol_records 
+  has_many :protocol_record 
 end
