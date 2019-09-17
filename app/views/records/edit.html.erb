@@ -5,7 +5,7 @@
     <tr>
       <td align="right"><label for="name">Name:</label></td>
       <td>
-        <input name="[protocol_data][name]" list="protocols" value="<%=@pr.protocol.name%>">
+        <input type="text" name="[protocol_data][name]" list="protocols" value="<%=@pr.protocol.name%>">
         <datalist id="protocols">
           <%Protocol.all.each do |p|%>
             <option id="<%=p.id%>" value="<%=p.name%>"><%=p.description%></option>
