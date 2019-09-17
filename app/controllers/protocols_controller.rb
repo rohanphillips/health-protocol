@@ -77,7 +77,7 @@ class ProtocolsController < ApplicationController
         @protocol.update(params[:protocol_data])
         redirect "/protocols/#{params[:id]}"
       else
-        erb :"/protocols/edit.html"
+        redirect to ("/protocols/#{params[:id]}/edit")
       end
     else
       redirect to ('/')
