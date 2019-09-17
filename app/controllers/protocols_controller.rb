@@ -11,11 +11,8 @@ class ProtocolsController < ApplicationController
 
   # GET: /protocols/new
   get "/protocols/new" do
-    if is_logged_in?
-      erb :"/protocols/new.html"
-    else
-      redirect to('/')
-    end
+    redirect_if_not_logged_in
+    erb :"/protocols/new.html"
   end
 
   # POST: /protocols
@@ -71,16 +68,13 @@ class ProtocolsController < ApplicationController
 
   # PATCH: /protocols/5
   patch "/protocols/:id" do
-    if is_logged_in?
-      @protocol = Protocol.find(params[:id])
-      if valid_inputs?(params)
-        @protocol.update(params[:protocol_data])
-        redirect "/protocols/#{params[:id]}"
-      else
-        redirect to ("/protocols/#{params[:id]}/edit")
-      end
+    redirect_if_not_logged_in
+    @protocol = Protocol.find(params[:id])
+    if valid_inputs?(params)
+      @protocol.update(params[:protocol_data])
+      redirect "/protocols/#{params[:id]}"
     else
-      redirect to ('/')
+      redirect to ("/protocols/#{params[:id]}/edit")
     end
   end
 

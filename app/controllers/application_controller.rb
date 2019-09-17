@@ -72,6 +72,12 @@ class ApplicationController < Sinatra::Base
       @env["sinatra.route"] == "GET /"
     end
 
+    def redirect_if_not_logged_in
+      if !is_logged_in?
+        redirect to ("/")
+      end
+    end
+
     def valid_inputs?(params)      
       is_valid = true
       params.each do |hash|
