@@ -2,6 +2,7 @@
 
 <form action="/protocols/<%=@protocol.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
+  
   <table>
     <tr>
       <td align="right"><label for="name">Name:</label></td>
@@ -13,7 +14,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="submit" name="Edit"></td>
+      <td><input type="submit" value="Submit"></td>
     </tr>
   </table>
 </form>

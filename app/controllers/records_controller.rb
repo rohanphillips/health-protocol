@@ -74,6 +74,7 @@ class RecordsController < ApplicationController
 
   # PATCH: /records/5
   patch "/records/:id" do
+    binding.pry
     if is_logged_in?
       @pr = ProtocolRecord.find_by(record_id: params[:id])
       if current_user.id == @pr.user.id

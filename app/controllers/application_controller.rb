@@ -75,11 +75,13 @@ class ApplicationController < Sinatra::Base
     def valid_inputs?(params)      
       is_valid = true
       params.each do |hash|
-        new_hash = hash[1]
-        new_hash.each do |data_hash|
-          if data_hash[1] == ""
-            is_valid = false              
-            break
+        new_hash = hash[1] 
+        if new_hash.is_a?(::Hash)
+          new_hash.each do |data_hash|
+            if data_hash[1] == ""
+              is_valid = false              
+              break
+            end
           end
         end
       end
