@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   # GET: /records
   get "/records" do
     if is_logged_in?
-      @userrecords = ProtocolRecord.where(user_id: current_user.id)
+      @userrecords = current_user.protocol_records
       erb :"/records/index.html"
     else
       redirect to('/')
