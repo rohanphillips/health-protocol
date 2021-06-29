@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
+gem 'activerecord', '~> 5.0', '>= 5.0', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
-gem "rack", ">= 2.1.4"
-gem "nokogiri", ">= 1.10.8"
+gem "rack", ">= 2.2.3"
+gem "nokogiri", ">= 1.11.7"
 gem 'require_all'
 gem 'sqlite3', '~> 1.3.6'
 gem 'thin'
